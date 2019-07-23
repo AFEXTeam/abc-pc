@@ -189,7 +189,7 @@ await FileUtil.getFileLength(path,type);
 clientFilesGetList
 ```js
 let filePath = "D:/"
-let fileType = ".jpg"
+let fileType = "jpg"
 await FileUtil.clientFilesGetList(filePath,fileType);
 ```
 
