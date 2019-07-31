@@ -16,10 +16,10 @@ listToExcel
 ```js
 let data = [
     ["1","name","sexual","age"],
-    ["2","huangguan","male","30"],
+    [ExportUtil.SPAN,"huangguan","male","30"],
     ["3","liudexin","male","29"]
 ]
-let head =  head = [
+let head = [
         {"label":"A"},
         {"label":"B"},
         {
@@ -94,7 +94,9 @@ downloadFile
 ```js
 let remotePath = "C:/test.log"
 let localPath = "C:/"
-FileUtil.downloadFile(remotePath,localPath).then(res=>{
+let serviceName = "/abc"
+let fileName = "a.txt"
+FileUtil.downloadFile(remotePath,localPath,serviceName,fileName).then(res=>{
     // todo
     console.log(res.downloadFile)
 });
@@ -177,12 +179,20 @@ let base64 = "XXXX" //base64字符串
 let result = await CodecUtil.clientFileBase64Handler(path,transferType,base64)
 ```
 
-getFileLength
+clientFileBase64Handler
 ```js
 let path = "D:/test.zip"
 let type = "M"
 await FileUtil.getFileLength(path,type);
 ```
+
+clientFilesGetList
+```js
+let filePath = "D:/"
+let fileType = "jpg"
+await FileUtil.clientFilesGetList(filePath,fileType);
+```
+
 3.事件
 -------------
 | 事件     | 说明 | 参数 |
@@ -196,6 +206,11 @@ await FileUtil.getFileLength(path,type);
 4.参数说明
 -------------
 ### FileUtil
+#### clientFilesGetList
+| 事件     | 说明 | 类型 | 默认值
+| -------- | --- | --- | ---|
+| filePath | 文件路径 | String | null 必输项|
+| fileType | 文件类型 | String | null 非必输，可以传入‘video’:将会返回全部媒体类型文件，‘image’：返回所有图片类型文件，传入‘具体后缀名称，例properties：将会返回.properties后缀的文件，不传则返回全部文件
 #### readClientFile
 | 事件     | 说明 | 类型 | 默认值
 | -------- | --- | --- | ---|
